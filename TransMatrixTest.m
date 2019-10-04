@@ -1,12 +1,10 @@
 s = 4;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
-E = [0, 0, s+d];
+E = [3, 3, s+d];
 T = [0, 0, 0];
-t_n = (E-T)/norm(E-T);
+t_n = (T-E)/norm(T-E);
 
-alpha = (d * sqrt(1 + (s+d)^2))/(s+d);  % Scalar for perspective
-T = [alpha 0 0; 0 alpha 0];  % Transformation matrix
 
 vertices = [
     2, 2, 0;
