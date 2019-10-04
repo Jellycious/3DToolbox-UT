@@ -1,4 +1,4 @@
-s = 4;  % Distance from origin to screen
+s = 6;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
 E = [3, 3, s+d];
