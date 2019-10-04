@@ -1,7 +1,7 @@
-s = 6;  % Distance from origin to screen
+s = 4;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
-E = [3, 3, s+d];
+E = [0, 5, s+d];
 T = [0, 0, 0];
 t_n = (T-E)/norm(T-E);
 
@@ -38,7 +38,7 @@ edges = [
 
 p = vertices(edges', :);
 
-r = E - p;
+r = p - E;
 r_n = r/norm(r);
 
 p = (d./(r_n*t_n')) .* r_n + E;
