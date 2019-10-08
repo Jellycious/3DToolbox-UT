@@ -33,7 +33,6 @@ edges = [
     6 2;
     7 3;
     8 4;
-    5 1;  % Temp...
 ];
 
 p = vertices(edges', :);
