@@ -1,6 +1,6 @@
 %Proof of concept of rotating an object around its axis
 
-angle = 0.25*pi; 
+angle = 0.05*pi; 
 x = 2; %location of cube
 y = 2;
 
