@@ -7,5 +7,5 @@ T = [0, 0, 0];
 load('wireframe.mat');
 p = cube;
 
-[x, y] = project_and_plot(p, d, E);
+[x, y] = project_to_plane(p, d, E);
 draw_screen(x, y);
