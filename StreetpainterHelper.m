@@ -1,11 +1,9 @@
-s = 4;  % Distance from origin to screen
-d = 8;  % Distance from screen to camera
+d = 14;  % Distance from origin to camera
 
-E = [0, 8, s+d];
-T = [0, 0, -16];
-t_n = (T-E)/norm(T-E);
-b_n = [1 0 0];              %  Assumption
-w_n = cross(b_n, t_n);
+% E(2) is y hoogte van camera
+E = [0, 10, d];
+
+w_n = [0 1 0];
 
 vertices = [
     0, 0;
@@ -37,22 +35,22 @@ edges = [
 ];
 
 p = vertices(edges', :);
-p = p * [1 0 0; 0 1 0] + [0 0 s];
-plot(p(:, 1), p(:, 2));
+p = p * [1 0 0; 0 1 0];
 
-r = p - E;
-p = (dot(-E, w_n)./(r*w_n')) .* r + E;
-
+%%
 figure;
 plot(p(:, 1), p(:, 2));
+axis square;
 
 %%
 r = p - E;
-r_n = r/norm(r);
+pj = (dot(-E, -w_n)./(r*(-w_n)')) .* r + E;
+pj = [pj(:, 1) pj(:, 3)];
+pj = pj * [1 0; 0 -1];      % Fix by mirror over x axis. Beetje hacky maar oke.
+                            % Zit een fout in de berekening (minnetje ergens)
 
-p = (d./(r_n*t_n')) .* r_n + E;
+x = reshape(pj(:,1), 2, []);
+y = reshape(pj(:,2), 2, []);
 
-fig = figure('Name', 'Object');
-plot(p(:,1), p(:,2), '-o');
-
+plot(x, y);
 axis square;
