@@ -16,6 +16,7 @@ vertices = [
     2.5, 2.5;
     .5, 2.5;
 ];
+vertices = vertices - [1, 1];
 
 edges = [
     1 2;
@@ -39,15 +40,17 @@ p = p * [1 0 0; 0 1 0];
 
 %%
 figure;
+subplot(1,2,1);
 plot(p(:, 1), p(:, 2));
 axis square;
+subplot(1,2,2);
 
 %%
 r = p - E;
 pj = (dot(-E, -w_n)./(r*(-w_n)')) .* r + E;
 pj = [pj(:, 1) pj(:, 3)];
 pj = pj * [1 0; 0 -1];      % Fix by mirror over x axis. Beetje hacky maar oke.
-                            % Zit een fout in de berekening (minnetje ergens)
+                            % Zit een fout of misinterpretatie in de berekening (minnetje ergens)
 
 x = reshape(pj(:,1), 2, []);
 y = reshape(pj(:,2), 2, []);
