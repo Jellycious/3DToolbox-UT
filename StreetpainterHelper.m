@@ -40,10 +40,10 @@ p = p * [1 0 0; 0 1 0];
 
 %%
 figure;
-subplot(1,2,1);
+subplot(2,1,1);
 plot(p(:, 1), p(:, 2));
+title('Cube drawn on 2D plane');
 axis square;
-subplot(1,2,2);
 
 %%
 r = p - E;
@@ -55,5 +55,6 @@ pj = pj * [1 0; 0 -1];      % Fix by mirror over x axis. Beetje hacky maar oke.
 x = reshape(pj(:,1), 2, []);
 y = reshape(pj(:,2), 2, []);
 
-plot(x, y);
+plot(x, y, 'b');
+title('Projection onto the XZ plane');
 axis square;

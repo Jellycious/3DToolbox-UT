@@ -21,10 +21,10 @@ r = p - E;
 
 % Project
 %a = d./(r*t_n')
-a = abs(d)./(r*t_n')
+a = abs(d)./(r*t_n');        % Prevent d from being negative
 % Remove alle punten achter de camera
 % Zo kunnen we niet oneindig lange lijnen maken tho...
-a(a < 0) = 0;
+% a(a < 0) = 0;
 
 pj = a .* r + E;
 
@@ -36,7 +36,5 @@ y = pj*s_y';
 % | x0  x2 |         | y0  y2 |
 % | x1  x3 |         | y1  y3 |
 % [x0, y0] -> [x1, y1] enz.
-% TODO: Kut dit is stuk... Screen is natuurlijk bijna nooit exact x en y
-% Vind scherm assen en coords dmv t_n
 x = reshape(x, 2, []);
 y = reshape(y, 2, []);

@@ -7,7 +7,8 @@ T = [0, 0, 0];
 load('wireframe.mat');
 p = cube;
 
-% Temp animation, wil een cirkel rond het object maken (sin cos function)
+% p = objload('teapot.obj', 0.05);
+
 
 frames = 100;
 M = moviein(frames);
@@ -20,7 +21,7 @@ for i = 1:frames
     text(-4, 4, sprintf("i: %f", i));
     
     M(:, i) = getframe;
-     pause(1);
+%     pause(1);
 end
 
 movie(M, 5)
