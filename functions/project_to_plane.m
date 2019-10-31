@@ -11,9 +11,9 @@ s_y = cross(s_x, t_n);
 
 
 % Werkt niet helemaal
-xaxis = [-1000 0 0; 1000 0 0]; p = [p; xaxis];
-yaxis = [0 -1000 0; 0 1000 0]; p = [p; yaxis];
-zaxis = [0 0 -1000; 0 0 1000]; p = [p; zaxis];
+% xaxis = [-1000 0 0; 1000 0 0]; p = [p; xaxis];
+% yaxis = [0 -1000 0; 0 1000 0]; p = [p; yaxis];
+% zaxis = [0 0 -1000; 0 0 1000]; p = [p; zaxis];
 % p = [p; xaxis; yaxis; zaxis];
 
 % Find vector from camera to point
@@ -24,7 +24,7 @@ r = p - E;
 a = abs(d)./(r*t_n')
 % Remove alle punten achter de camera
 % Zo kunnen we niet oneindig lange lijnen maken tho...
-% a(a < 0) = 0;
+a(a < 0) = 0;
 
 pj = a .* r + E;
 

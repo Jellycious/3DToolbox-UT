@@ -20,7 +20,7 @@ for i = 1:frames
     text(-4, 4, sprintf("i: %f", i));
     
     M(:, i) = getframe;
-%     pause(0.2);
+     pause(1);
 end
 
 movie(M, 5)
