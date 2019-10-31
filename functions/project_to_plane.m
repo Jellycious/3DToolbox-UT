@@ -3,11 +3,17 @@ if (nargin < 4)
     T = [0 0 0];
 end
 t_n = (T-E)/norm(T-E);
+w_n = [ 0 1 0 ];
+
+b = cross(t_n, w_n);
+s_x = b/norm(b);
+s_y = cross(s_x, t_n);
+
 
 % Werkt niet helemaal
-% xaxis = [-1000 0 0; 1000 0 0]; p = [p; xaxis];
-% yaxis = [0 -1000 0; 0 1000 0]; p = [p; yaxis];
-% zaxis = [0 0 -1000; 0 0 1000]; p = [p; zaxis];
+xaxis = [-1000 0 0; 1000 0 0]; p = [p; xaxis];
+yaxis = [0 -1000 0; 0 1000 0]; p = [p; yaxis];
+zaxis = [0 0 -1000; 0 0 1000]; p = [p; zaxis];
 % p = [p; xaxis; yaxis; zaxis];
 
 % Find vector from camera to point
@@ -20,7 +26,10 @@ a = abs(d)./(r*t_n')
 % Zo kunnen we niet oneindig lange lijnen maken tho...
 % a(a < 0) = 0;
 
-pj = a .* r + E
+pj = a .* r + E;
+
+x = pj*s_x';
+y = pj*s_y';
 
 % Reshape to 
 % x:                y:
@@ -29,5 +38,5 @@ pj = a .* r + E
 % [x0, y0] -> [x1, y1] enz.
 % TODO: Kut dit is stuk... Screen is natuurlijk bijna nooit exact x en y
 % Vind scherm assen en coords dmv t_n
-x = reshape(pj(:,1), 2, []);
-y = reshape(pj(:,2), 2, []);
+x = reshape(x, 2, []);
+y = reshape(y, 2, []);

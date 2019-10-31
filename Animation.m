@@ -1,8 +1,7 @@
 s = 4;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
-E = [s+d, 0, 0];
-% E = [ 0, 0, 0 ];
+E = [s+d, 0, s+d];
 T = [0, 0, 0];
 
 load('wireframe.mat');
@@ -16,8 +15,6 @@ for i = 1:frames
     clf;
     
     [x, y] = project_to_plane(p, d, E.*[sin(i*2*pi/frames) 1 cos(i*2*pi/frames)]);
-%     [x, y] = project_to_plane(p, d, E+[(s+d)*sin(i*2*pi/frames) 0 (s+d)*cos(i*2*pi/frames)]);
-%     [x, y] = project_to_plane(p, d, E+[i 0 0]);
     draw_screen(x, y);
     hold on;
     text(-4, 4, sprintf("i: %f", i));

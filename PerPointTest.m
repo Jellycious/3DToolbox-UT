@@ -1,10 +1,11 @@
 % s = 4;  % Distance from origin to screen
 % d = 8;  % Distance from screen to camera
-s = 2;
-d = 5;
+s = 4;
+d = 8;
 
-E = [s+d, 0, 0];
+E = [0, 10, s+d];
 T = [0, 0, 0];
+
 
 load('wireframe.mat');
 p = cube;
