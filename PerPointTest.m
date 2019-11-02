@@ -11,20 +11,23 @@ load('wireframe.mat');
 p = cube;
 
 p = objload('models/teapot.obj', 0.1);
-hold on;
+
+Cam = Camera(E, T, 8, 90);
+Cam.drawAxis();
+
+
 
 %% Generate plane
 % Moet in eigen functie eigenlijk
 px = 10;
 py = min(p(:,2));
 pp = [-10 py 10; 10 py 10; 10 py -10; -10 py -10];
-[x, y] = project_to_plane(pp, d, E, T);
+q = Cam.project(pp);
 % TODO: Dit kan beter in draw functie
-x = reshape(x, 4, []);
-y = reshape(y, 4, []);
+x = reshape(q(:, 1), 4, []);
+y = reshape(q(:, 2), 4, []);
 fill(x, y, [0.9 0.9 0.9]);
 
 %% Generate obj
-[x, y] = project_to_plane(p, d, E, T);
-draw_screen(x, y);
-hold on;
+q = Cam.project(p);
+Cam.drawToScreen(q, 'b');
