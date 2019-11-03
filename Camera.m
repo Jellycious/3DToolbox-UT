@@ -53,9 +53,9 @@ classdef Camera
             a = self.d./(r*t_n');         % Find intersection with plane
             
             % Remove all points behind camera
-            % TODO: Do some better checks, and move points to screen edge
             % if required.
-            a(a < 0) = 0;
+            a(a < 0) = [];
+            r(a < 0) = [];
 
             % Calculate projected points
             pj = a .* r + self.E;
