@@ -55,7 +55,7 @@ classdef Camera
             % Remove all points behind camera
             % TODO: Do some better checks, and move points to screen edge
             % if required.
-%             a(a < 0) = 0;
+            a(a < 0) = 0;
 
             % Calculate projected points
             pj = a .* r + self.E;
@@ -82,6 +82,14 @@ classdef Camera
             hold on;
         end
         
+        function drawSquares(self, p, color)
+            q = self.project(p);
+            x = reshape(q(:,1), 4, []);
+            y = reshape(q(:,2), 4, []);
+            fill(x, y, color);
+            hold on;
+        end
+        
         function drawAxis(self)
             % The x,y,z normal vectors
             p = [1 0 0; 0 0 0;
@@ -91,6 +99,27 @@ classdef Camera
             pt = self.projectLine(p);
             
             self.drawToScreen(pt, 'black');
+        end
+        
+        function drawCheckerboard(self, ss, sc)
+%             ss = 2;  % Squaresize
+%             sc = 6;  % Squarecount in all directions
+            square = [0 0 0; ss 0 0; ss 0 ss; 0 0 ss];
+
+            b = zeros(((sc+1)^2 + sc^2) * size(square,1), 3);
+            w = zeros(((sc-1)^2 + sc^2) * size(square,1), 3);
+            for i = -sc:sc
+                for j = -sc:sc
+                    if mod(i+j,2) == 0
+                        b = [b; square+ss*[i 0 j]];
+                    else
+                        w = [w; square+ss*[i 0 j]];
+                    end
+                end
+            end
+            
+            self.drawSquares(b, 'black');
+            self.drawSquares(w, [.9 .9 .9]);
         end
         
         function projectAndDraw(self, p, color)
@@ -110,6 +139,8 @@ classdef Camera
             self.E = E0+[1.2,0,0];
             q = self.project(p);
             self.drawToScreen(q, 'cyan');
+            
+            alpha(.5);
             
             %% Reset
             self.E = E0;
