@@ -20,11 +20,11 @@ M = moviein(frames);
 for i = 1:frames
     clf;
     Cam.drawAxis();
-    Cam.E = E .* [sin(i*2*pi/frames) 1 cos(i*2*pi/frames)];
+    %Cam.E = E .* [sin(i*2*pi/frames) 1 cos(i*2*pi/frames)];
     q = Cam.project(p);
     %rotate cube
     homq = threedtohom(p');
-    rotm = xrotationm(0.005*pi);
+    rotm = xrotationm(0.005*pi); %rotation along x axis. we could also do translation of something else.
     homq = rotm * homq;
     p = homto3d(homq)';
     
