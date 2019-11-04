@@ -13,7 +13,6 @@ p = cube;
 p = objload('models/teapot.obj', 0.1);
 
 Cam = Camera(E, T, 8, 90);
-Cam.drawAxis();
 
 
 
@@ -27,7 +26,11 @@ q = Cam.project(pp);
 x = reshape(q(:, 1), 4, []);
 y = reshape(q(:, 2), 4, []);
 fill(x, y, [0.9 0.9 0.9]);
+hold on;
 
 %% Generate obj
 q = Cam.project(p);
 Cam.drawToScreen(q, 'b');
+
+
+Cam.drawAxis();

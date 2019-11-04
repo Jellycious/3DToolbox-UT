@@ -10,8 +10,9 @@ load('wireframe.mat');
 p = cube;
 p = p + [0 2 0];
 
-
+% p = objload('models/teapot.obj', 0.05);
 q = Cam.project(p);
+Cam.drawAxis();
 Cam.drawToScreen(q, 'b');
 
 %%
@@ -19,6 +20,7 @@ frames = 100;
 M = moviein(frames);
 for i = 1:frames
     clf;
+    Cam.drawCheckerboard(2, 8);
     Cam.drawAxis();
     
     Cam.E = E .* [sin(i*2*pi/frames) 1 cos(i*2*pi/frames)];

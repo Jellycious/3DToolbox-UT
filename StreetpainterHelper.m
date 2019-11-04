@@ -41,9 +41,12 @@ p = p * [1 0 0; 0 1 0];
 %%
 figure;
 subplot(2,1,1);
-plot(p(:, 1), p(:, 2));
+x = reshape(p(:,1), 2, []);
+y = reshape(p(:,2), 2, []);
+plot(x, y, 'b');
 title('Cube drawn on 2D plane');
 axis square;
+subplot(2,1,2);
 
 %%
 r = p - E;
