@@ -23,7 +23,7 @@ classdef JCamera
         end
         
         function s = get_screensize(obj)
-           s = 2*tan(0.5*obj.FoV)*obj.d;
+           s = tan(0.5*obj.FoV)*obj.d;
         end
         
         function n = get_camnormal(obj)

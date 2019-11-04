@@ -1,6 +1,8 @@
 %%This file is an animation also utilizing transformation matrices.
+%%The cube is rotating along the xaxis and the camera is rotating around
+%%the cube.
 s = 4;
-d = 8;  % Distance from screen to camera
+d = 12;  % Distance from screen to camera
 
 E = [d+s, 5, d+s];
 T = [0, 0, 0];
@@ -11,7 +13,7 @@ load('wireframe.mat');
 p = cube;
 
 q = Cam.project(p);
-Cam.drawToScreen(q, 'b');
+Cam.drawToScreen(q, 'cyan');
 
 %%
 frames = 200;
@@ -20,7 +22,7 @@ M = moviein(frames);
 for i = 1:frames
     clf;
     Cam.drawAxis();
-    %Cam.E = E .* [sin(i*2*pi/frames) 1 cos(i*2*pi/frames)];
+    Cam.E = E .* [sin(i*2*pi/frames) 1 cos(i*2*pi/frames)];
     q = Cam.project(p);
     %rotate cube
     homq = threedtohom(p');
@@ -28,7 +30,7 @@ for i = 1:frames
     homq = rotm * homq;
     p = homto3d(homq)';
     
-    Cam.drawToScreen(q, 'b');
+    Cam.drawToScreen(q, 'cyan');
     text(-4, 4, sprintf("i: %f", i));
     
     M(:, i) = getframe;

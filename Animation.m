@@ -2,7 +2,7 @@ s = 4;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
 E = [s+d, 5, s+d];
-T = [5, 0, 5];
+T = [0, 0, 0];
 
 Cam = Camera(E, T, 8, 90);
 

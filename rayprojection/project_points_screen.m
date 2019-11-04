@@ -15,10 +15,12 @@ d = camera.d;
 te = T-E;
 tn = te/norm(te);
 
-r = points-E;
-lq = r * tn'; %repeated dot product as matrix multiplication
+r = points-E';
+lq = tn * r; %repeated dot product as matrix multiplication
 a = d./lq; 
 ra = a.*r; % intersection points with camera screen.
-p = ra + camera.E;
+p = ra + camera.E';
+a(a < 0) = [];
+p(a < 0) = [];
 end
 

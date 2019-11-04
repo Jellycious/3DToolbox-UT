@@ -39,6 +39,7 @@ classdef Camera
         end
         
         function q = project(self, p)
+            
             %% Prepare (find normal vectors etc.)
             t_n = (self.T-self.E)/norm(self.T-self.E);
 
