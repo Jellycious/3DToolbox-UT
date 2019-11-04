@@ -2,7 +2,7 @@ s = 4;  % Distance from origin to screen
 d = 8;  % Distance from screen to camera
 
 E = [s+d, 5, s+d];
-T = [0, 0, 0];
+T = [5, 0, 5];
 
 Cam = Camera(E, T, 8, 90);
 
@@ -10,7 +10,6 @@ load('wireframe.mat');
 p = cube;
 p = p + [0 2 0];
 
-p = objload('models/teapot.obj', 0.05);
 
 q = Cam.project(p);
 Cam.drawToScreen(q, 'b');

@@ -1,4 +1,4 @@
-classdef Camera
+classdef JCamera
     %CAMERA Defines a pinhole camera
     %   Detailed explanation goes here
     
@@ -10,7 +10,7 @@ classdef Camera
     end
     
     methods
-        function obj = Camera(FoV,d,E,T) % constructor
+        function obj = JCamera(FoV,d,E,T) % constructor
             
             if (FoV<=0 || FoV >= pi)
                 error('FoV is out of bounds');

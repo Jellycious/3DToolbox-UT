@@ -54,8 +54,7 @@ classdef Camera
             
             % Remove all points behind camera
             % if required.
-            a(a < 0) = [];
-            r(a < 0) = [];
+            a(a < 0) = 0;
 
             % Calculate projected points
             pj = a .* r + self.E;

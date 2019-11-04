@@ -5,7 +5,7 @@ d = 8;  % Distance from screen to camera
 E = [d+s, 5, d+s];
 T = [0, 0, 0];
 
-Cam = Camera(E, T, d, 90);
+Cam = Camera(E, T, d, 1/4*pi);
 
 load('wireframe.mat');
 p = cube;
